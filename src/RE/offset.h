@@ -6,13 +6,13 @@ namespace RE
 	{
 		namespace Quest
 		{
-			constexpr auto IsStageDone = REL::ID(25011);
+			constexpr auto IsStageDone = REL::ID(24483);
 		}
 
 		namespace TESObjectREFR
 		{
-			constexpr auto Initialize = REL::ID(19507);
-			constexpr auto Reset = REL::ID(19802);
+			constexpr auto Initialize = REL::ID(19105);
+			constexpr auto Reset = REL::ID(19375);
 		}
 	}
 }

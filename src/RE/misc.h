@@ -13,7 +13,7 @@ namespace RE
 	static RE::ActorValue LookupActorValueByName(const char* av_name)
 	{
 		using func_t = decltype(&LookupActorValueByName);
-		REL::Relocation<func_t> func{ REL::ID(27203) };
+		REL::Relocation<func_t> func{ REL::ID(26570) };
 		return func(av_name);
 	}
 }

@@ -11,7 +11,8 @@ namespace
 			util::report_and_fail("Failed to find standard logging directory"sv);
 		}
 
-		*path /= fmt::format("{}.log"sv, Plugin::NAME);
+		*path /= SKSE::PluginDeclaration::GetSingleton()->GetName();
+		*path += L".log";
 		auto sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(path->string(), true);
 
 #ifdef DEBUG
@@ -29,37 +30,37 @@ namespace
 	}
 }
 
-extern "C" DLLEXPORT constinit auto SKSEPlugin_Version = []()
-	{
-		SKSE::PluginVersionData v{};
+//extern "C" DLLEXPORT constinit auto SKSEPlugin_Version = []()
+//	{
+//		SKSE::PluginVersionData v{};
+//
+//		v.PluginVersion(Plugin::VERSION);
+//		v.PluginName(Plugin::NAME);
+//		v.AuthorName("SeaSparrow"sv);
+//		v.UsesAddressLibrary();
+//		v.UsesUpdatedStructs();
+//
+//		return v;
+//	}();
 
-		v.PluginVersion(Plugin::VERSION);
-		v.PluginName(Plugin::NAME);
-		v.AuthorName("SeaSparrow"sv);
-		v.UsesAddressLibrary();
-		v.UsesUpdatedStructs();
-
-		return v;
-	}();
-
-extern "C" DLLEXPORT bool SKSEAPI
-SKSEPlugin_Query(const SKSE::QueryInterface* a_skse, SKSE::PluginInfo* a_info)
-{
-	a_info->infoVersion = SKSE::PluginInfo::kVersion;
-	a_info->name = Plugin::NAME.data();
-	a_info->version = Plugin::VERSION[0];
-
-	if (a_skse->IsEditor()) {
-		return false;
-	}
-
-	const auto ver = a_skse->RuntimeVersion();
-	if (ver < SKSE::RUNTIME_1_6_1130) {
-		return false;
-	}
-
-	return true;
-}
+//extern "C" DLLEXPORT bool SKSEAPI
+//SKSEPlugin_Query(const SKSE::QueryInterface* a_skse, SKSE::PluginInfo* a_info)
+//{
+//	a_info->infoVersion = SKSE::PluginInfo::kVersion;
+//	a_info->name = Plugin::NAME.data();
+//	a_info->version = Plugin::VERSION[0];
+//
+//	if (a_skse->IsEditor()) {
+//		return false;
+//	}
+//
+//	const auto ver = a_skse->RuntimeVersion();
+//	if (ver < SKSE::RUNTIME_1_6_1130) {
+//		return false;
+//	}
+//
+//	return true;
+//}
 
 static void MessageEventCallback(SKSE::MessagingInterface::Message* a_msg)
 {
@@ -80,16 +81,16 @@ extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_s
 {
 	InitializeLog();
 	logger::info("=================================================");
-	logger::info("{} v{}"sv, Plugin::NAME, Plugin::VERSION.string());
+	//logger::info("{} v{}"sv, Plugin::NAME, Plugin::VERSION.string());
 	logger::info("Author: SeaSparrow");
 	logger::info("=================================================");
 	SKSE::Init(a_skse);
 	SKSE::AllocTrampoline(28);
 
-	const auto ver = a_skse->RuntimeVersion();
-	if (ver < SKSE::RUNTIME_1_6_1130) {
-		return false;
-	}
+	//const auto ver = a_skse->RuntimeVersion();
+	//if (ver < SKSE::RUNTIME_1_6_1130) {
+	//	return false;
+	//}
 
 	const auto messaging = SKSE::GetMessagingInterface();
 	messaging->RegisterListener(&MessageEventCallback);

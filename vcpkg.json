@@ -1,5 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
   "name": "container-distribution-framework",
   "version-string": "3.0.0",
   "description": "DLL that allows for dynamic coin addition to containers based on conditions for SkyrimSE. ",
@@ -12,7 +11,7 @@
     "jsoncpp",
     "simpleini",
     "xbyak",
-    "commonlibsse-po3-se"
+    "commonlibsse-ng-flatrim"
   ],
   "builtin-baseline": "ea295dff0b3e9e9caeb49d1225dc7272d3231cf1"
 }

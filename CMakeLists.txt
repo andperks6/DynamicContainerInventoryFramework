@@ -46,7 +46,7 @@ target_link_libraries(
 			JsonCpp::JsonCpp
 )
 
-set_target_properties(CommonLibSSE PROPERTIES
+set_target_properties(CommonLibVR PROPERTIES
 	FOLDER External
 )
 

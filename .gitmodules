@@ -2,11 +2,6 @@
 	path = Tools/SKSE-CMakeModules
 	url = https://github.com/Exit-9B/SKSE-CMakeModules.git
 
-[submodule "External/CommonLibSSE-NG"]
-	path = External/CommonLibSSE-NG
-	url = https://github.com/alandtse/CommonLibVR.git
-	branch = ng
-
 [submodule "External/CommonLibVR"]
 	path = External/CommonLibVR
 	url = https://github.com/alandtse/CommonLibVR.git

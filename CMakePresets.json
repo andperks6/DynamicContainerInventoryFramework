@@ -50,13 +50,22 @@
       }
     },
     {
+      "name": "vr",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/buildvr",
+      "cacheVariables": {
+        "BUILD_SKYRIMVR": "ON"
+      }
+    },
+    {
       "name": "vs2022-windows-vcpkg-release",
       "inherits": [
         "cmake-dev",
         "vcpkg",
         "windows",
         "vs2022",
-        "release"
+        "release",
+        "vr"
       ]
     },
     {
@@ -66,7 +75,8 @@
         "vcpkg",
         "windows",
         "vs2022",
-        "test"
+        "test",
+        "vr"
       ],
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug"

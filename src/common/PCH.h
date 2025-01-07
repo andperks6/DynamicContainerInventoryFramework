@@ -8,7 +8,6 @@
 
 #include <json/json.h>
 
-#include "Plugin.h"
 
 #define DLLEXPORT __declspec(dllexport)
 
@@ -55,3 +54,5 @@ namespace stl {
         return reinterpret_cast<std::uintptr_t>((void*&)fn);
     }
 }
+
+#include "Version.h"

@@ -5,7 +5,7 @@
 #include "RE/offset.h"
 
 namespace {
-	void ResolveLeveledList(RE::TESLeveledList* a_levItem, RE::BSScrapArray<RE::CALCED_OBJECT>* a_result, uint32_t a_count) {
+	void ResolveLeveledList(RE::TESLeveledList* a_levItem, RE::BSScrapArray<RE::CALCED_OBJECT>* a_result, int16_t a_count) {
 		RE::BSScrapArray<RE::CALCED_OBJECT> temp{};
 		a_levItem->CalculateCurrentFormList(RE::PlayerCharacter::GetSingleton()->GetLevel(), a_count, temp, 0, true);
 
@@ -21,7 +21,7 @@ namespace {
 		}
 	}
 
-	void AddLeveledListToContainer(RE::TESLeveledList * list, RE::TESObjectREFR * a_container, uint32_t a_count) {
+	void AddLeveledListToContainer(RE::TESLeveledList * list, RE::TESObjectREFR * a_container, int16_t a_count) {
 		RE::BSScrapArray<RE::CALCED_OBJECT> result{};
 		ResolveLeveledList(list, &result, a_count);
 		if (result.size() < 1) return;
@@ -42,8 +42,8 @@ namespace Hooks {
 	void ContainerManager::Install()
 	{
 		auto& trampoline = SKSE::GetTrampoline();
-		REL::Relocation<std::uintptr_t> initializeTarget{ RE::Offset::TESObjectREFR::Initialize, 0x78C };
-		REL::Relocation<std::uintptr_t> resetTarget{ RE::Offset::TESObjectREFR::Reset, 0x12B };
+		REL::Relocation<std::uintptr_t> initializeTarget{ RE::Offset::TESObjectREFR::Initialize, 0x69A };
+		REL::Relocation<std::uintptr_t> resetTarget{ RE::Offset::TESObjectREFR::Reset, 0x145 };
 
 		_initialize = trampoline.write_call<5>(initializeTarget.address(), Initialize);
 		_reset = trampoline.write_call<5>(resetTarget.address(), Reset);
@@ -277,7 +277,7 @@ namespace Hooks {
 			return;
 		}
 
-		uint32_t count = ruleCount;
+		int16_t count = ruleCount;
 		if (randomAdd) {
 			size_t upper = newForms.size() - 1;
 			for (auto i = (size_t)0; i < count; ++i) {

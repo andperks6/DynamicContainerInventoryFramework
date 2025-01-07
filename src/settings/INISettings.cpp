@@ -16,7 +16,7 @@ namespace Settings::INI
 
 		::CSimpleIniA ini{};
 		ini.SetUnicode();
-		ini.LoadFile(fmt::format(R"(.\Data\SKSE\Plugins\{}.ini)", Plugin::NAME).c_str());
+		ini.LoadFile(fmt::format(R"(.\Data\SKSE\Plugins\{}.ini)", Version::NAME).c_str());
 
 		if (ini.KeyExists("General", "fMaxRefLookupDistance")) {
 			float newDistance = static_cast<float>(ini.GetDoubleValue("General", "fMaxRefLookupDistance", 25000.0f));
